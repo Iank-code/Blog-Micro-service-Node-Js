@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Micro-service for posts",
   "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "author": "Ian Kamau",
   "license": "MIT",
   "dependencies": {

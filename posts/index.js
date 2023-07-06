@@ -1,8 +1,28 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const { randomBytes } = require("crypto");
 
 const app = express();
+app.use(bodyParser.json());
 
-app.get("/post", (req, res) => {});
+const posts = {};
 
-app.post("/post", (req, res) => {});
+app.get("/post", (req, res) => {
+  res.send(posts).status(200);
+});
 
+app.post("/post", (req, res) => {
+  const id = randomBytes(4).toString("hex");
+  const { title } = req.body;
+
+  posts[id] = {
+    id,
+    title,
+  };
+
+  res.status(201).send(posts[id]);
+});
+
+app.listen(4000, () => {
+  console.log("listening on port 4000");
+});
